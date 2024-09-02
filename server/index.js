@@ -15,8 +15,8 @@ app.use(cors({
     origin: "https://chat-app-delta-beige-57.vercel.app",
     methods: ["POST", "GET"],
     credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"]
 }));
+app.options('*', cors());
 
 app.use(express.json());
 
