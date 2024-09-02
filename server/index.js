@@ -45,7 +45,7 @@ server.listen(PORT, () => {
 
 const io = socket(server, {
     cors: {
-        origin: "https://chat-app-delta-beige-57.vercel.app",
+        origin: "https://chat-app-delta-beige-57.vercel.app/",
         credentials: true,
     },
 });
