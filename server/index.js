@@ -13,9 +13,11 @@ require("dotenv").config();
 
 app.use(cors({
     origin: "https://chat-app-delta-beige-57.vercel.app",
-    methods:["POST","GET"],
+    methods: ["POST", "GET"],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
 app.use(express.json());
 
 
