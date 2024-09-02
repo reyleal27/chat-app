@@ -24,9 +24,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 }).catch((err) => {
     console.log(err.message)
 });
-app.get("/", (req, res) => {
-   res.json("Chat App") 
-});
+
 app.use("/api/users", userRoutes);
 app.use("/api/messages", messageRoute);
 
