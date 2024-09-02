@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
 const messageRoute = require("./routes/messagesRoute");
 const socket = require('socket.io');
-const server = createServer(app);
 
+const http = require('http');
 
 
 const app = express();
@@ -34,7 +34,7 @@ app.use((err, req, res, next) => {
 });
 
 
-
+const server = http.createServer(app);
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
