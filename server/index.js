@@ -5,20 +5,18 @@ const userRoutes = require("./routes/userRoutes");
 const messageRoute = require("./routes/messagesRoute");
 const socket = require('socket.io');
 
-
 const app = express();
 require("dotenv").config();
-// const { MONGO_URL} = process.env;
 
 app.use(cors());
 app.use(express.json());
 
 
-// mongoose.connect(MONGO_URL).then(() => {
-//     console.log(`Database connected successful`);
-// }).catch((err) => {
-//     console.log(err.message)
-// });
+mongoose.connect(process.env.MONGO_URL).then(() => {
+    console.log(`Database connected successful`)
+}).catch((err) => {
+    console.log(err.message)
+});
 
 app.use("/api/users", userRoutes);
 app.use("/api/messages", messageRoute);
