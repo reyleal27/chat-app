@@ -5,6 +5,8 @@ const userRoutes = require("./routes/userRoutes");
 const messageRoute = require("./routes/messagesRoute");
 const socket = require('socket.io');
 
+
+
 const app = express();
 require("dotenv").config();
 
@@ -36,7 +38,7 @@ const server = app.listen(PORT, () => {
 
 const io = socket(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "https://chat-3ox4akylk-rey-vincent-leals-projects.vercel.app",
         credentials: true,
     },
 });
