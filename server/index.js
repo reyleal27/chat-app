@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
 const messageRoute = require("./routes/messagesRoute");
 const socket = require('socket.io');
+const server = createServer(app);
 
 
 
@@ -35,7 +36,7 @@ app.use((err, req, res, next) => {
 
 
 const PORT = process.env.PORT || 5000;
-const server = app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server started on port ${process.env.PORT}`)
 });
 
@@ -58,9 +59,12 @@ io.on("connection", (socket) => {
         const sendUserSocket = onlineUsers.get(data.to);
         if (sendUserSocket) {
             socket.to(sendUserSocket).emit("msg-receive", data.message)
-            console.log("message delivered to",sendUserSocket )
+            console.log("message delivered to", sendUserSocket)
         } else {
             console.log("user not online", data.to)
         }
-    })
+    });
+    socket.on("disconnect", () => {
+    console.log("Client disconnected");
+  });
 });

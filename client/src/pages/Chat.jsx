@@ -28,14 +28,29 @@ const Chat = () => {
     getUsers();
   }, [navigate]);
 
-    useEffect(() => {
-        if (currentUser) {
-          socket.current = io(host, {
-              withCredentials: true,
-            });
-            socket.current.emit("add-user", currentUser.id)
-        }
-    }, [currentUser]);
+    // useEffect(() => {
+    //     if (currentUser) {
+    //       socket.current = io(host, {
+    //           withCredentials: true,
+    //         });
+    //         socket.current.emit("add-user", currentUser.id)
+    //     }
+  // }, [currentUser]);
+  
+  useEffect(() => {
+    if (currentUser) {
+      socket.current = io(host, {
+        withCredentials: true,
+      });
+      socket.current.emit("add-user", currentUser.id);
+    }
+
+    return () => {
+      if (socket.current) {
+        socket.current.disconnect();
+      }
+    };
+  }, [currentUser]);
     
     
   useEffect(() => {
