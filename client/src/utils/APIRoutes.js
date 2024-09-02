@@ -1,5 +1,5 @@
 // export const host = "http://localhost:5000";
-export const host = "https://chat-app-backend-j4k9.onrender.com";
+export const host = "https://chat-app-server-eta-virid.vercel.app";
 export const registerRoute = `${host}/api/users/register`;
 export const loginRoute = `${host}/api/users/login`;
 export const setAvatarRoute = `${host}/api/users/setavatar`;

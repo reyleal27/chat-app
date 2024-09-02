@@ -12,7 +12,8 @@ const app = express();
 require("dotenv").config();
 
 app.use(cors({
-    origin: "https://chat-3ox4akylk-rey-vincent-leals-projects.vercel.app",
+    origin: "chat-app-delta-beige-57.vercel.app",
+    methods:["POST","GET"],
     credentials: true,
 }));
 app.use(express.json());
@@ -23,7 +24,9 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 }).catch((err) => {
     console.log(err.message)
 });
-
+app.get("/", (req, res) => {
+   res.json("Chat App") 
+});
 app.use("/api/users", userRoutes);
 app.use("/api/messages", messageRoute);
 
@@ -42,7 +45,7 @@ server.listen(PORT, () => {
 
 const io = socket(server, {
     cors: {
-        origin: "https://chat-3ox4akylk-rey-vincent-leals-projects.vercel.app",
+        origin: "chat-app-delta-beige-57.vercel.app",
         credentials: true,
     },
 });

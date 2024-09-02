@@ -13,6 +13,8 @@ const Login = () => {
     username: "",
     password: "",
   });
+
+  axios.defaults.withCredentials = true;
     
     useEffect(() => {
         if (localStorage.getItem("chat-app-user")) {
