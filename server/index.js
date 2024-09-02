@@ -10,7 +10,10 @@ const socket = require('socket.io');
 const app = express();
 require("dotenv").config();
 
-app.use(cors());
+app.use(cors({
+    origin: "https://chat-3ox4akylk-rey-vincent-leals-projects.vercel.app",
+    credentials: true,
+}));
 app.use(express.json());
 
 
