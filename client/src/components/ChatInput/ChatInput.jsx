@@ -113,7 +113,7 @@ const Container = styled.div`
       }
       .emoji-wrapper {
         position: absolute;
-        top: -420px;
+        top: -450px;
         background-color: #080420;
         box-shadow: 0 5px 10px #9a86f3;
         border-color: #9a86f3;
