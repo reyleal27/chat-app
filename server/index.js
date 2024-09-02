@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
 const messageRoute = require("./routes/messagesRoute");
 const socket = require('socket.io');
-const server = createServer(app);
 
+const http = require('http');
 
 
 const app = express();
@@ -13,9 +13,11 @@ require("dotenv").config();
 
 app.use(cors({
     origin: "https://chat-app-delta-beige-57.vercel.app",
-    methods:["POST","GET"],
+    methods: ["POST", "GET"],
     credentials: true,
 }));
+app.options('*', cors());
+
 app.use(express.json());
 
 
@@ -24,9 +26,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 }).catch((err) => {
     console.log(err.message)
 });
-app.get("/", (req, res) => {
-   res.json("Chat App") 
-});
+
 app.use("/api/users", userRoutes);
 app.use("/api/messages", messageRoute);
 
@@ -36,7 +36,7 @@ app.use((err, req, res, next) => {
 });
 
 
-
+const server = http.createServer(app);
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
@@ -45,7 +45,7 @@ server.listen(PORT, () => {
 
 const io = socket(server, {
     cors: {
-        origin: "https://chat-app-delta-beige-57.vercel.app/",
+        origin: "https://chat-app-delta-beige-57.vercel.app",
         credentials: true,
     },
 });
